@@ -1,0 +1,25 @@
+# API
+fastapi
+uvicorn[standard]
+
+# AI / LLM
+langchain
+langchain-mistralai
+langgraph
+
+# Data validation
+pydantic
+pydantic-settings
+
+# GitHub API
+PyGithub
+
+# Environment variables
+python-dotenv
+
+# HTTP client
+httpx
+
+# Testing
+pytest
+pytest-asyncio
