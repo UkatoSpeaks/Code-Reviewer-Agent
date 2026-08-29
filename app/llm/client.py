@@ -5,7 +5,7 @@ from app.models.review import CodeReview
 
 
 llm = ChatMistralAI(
-    model="mistral-large-latest",
+    model="mistral-small-latest",
     temperature=0,
     api_key=settings.mistral_api_key,
 )

@@ -75,9 +75,20 @@ Suggestion:
 
 print("\n========== GRAPH RESULT ==========\n")
 
-print("Bug findings:", len(result["bug_findings"]))
+print(
+    "Bug findings:",
+    len(result["bug_findings"])
+)
 
-for finding in result["bug_findings"]:
+print(
+    "Security findings:",
+    len(result["security_findings"])
+)
+
+
+print("\n========== SECURITY FINDINGS ==========\n")
+
+for finding in result["security_findings"]:
     print(f"""
 Severity: {finding.severity}
 File: {finding.file}
