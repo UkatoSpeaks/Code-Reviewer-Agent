@@ -4,6 +4,7 @@ import hmac
 from fastapi import APIRouter, Header, HTTPException, Request
 
 from app.config.settings import settings
+from app.github.client import post_pull_request_review
 from app.services.review_service import review_pull_request
 
 
@@ -75,10 +76,50 @@ async def github_webhook(
     repo = repository["name"]
     pull_number = pull_request["number"]
 
+    # Run the complete review pipeline
     result = review_pull_request(
         owner,
         repo,
         pull_number,
+    )
+
+    # Build GitHub PR review body
+    review_body = f"""## Code Reviewer Agent
+
+### Summary
+
+{result["final_summary"]}
+
+### Findings
+
+"""
+
+    if not result["final_findings"]:
+        review_body += "No issues found.\n"
+
+    else:
+        for finding in result["final_findings"]:
+            review_body += f"""
+### {finding.severity.upper()}: {finding.issue}
+
+**File:** `{finding.file}`  
+**Line:** `{finding.line}`
+
+{finding.explanation}
+
+**Suggestion:**
+
+{finding.suggestion}
+
+---
+"""
+
+    # Post review back to GitHub
+    post_pull_request_review(
+        owner,
+        repo,
+        pull_number,
+        review_body,
     )
 
     return {
