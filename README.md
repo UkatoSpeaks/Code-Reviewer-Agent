@@ -1,3 +1,3 @@
-## Webhook Test
+## Automated Review Test
 
-Testing the GitHub webhook integration.
+This change is being used to test the automated PR review workflow.
