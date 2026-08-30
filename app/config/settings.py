@@ -1,14 +1,13 @@
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    mistral_api_key:str
-    github_token:str
+    mistral_api_key: str
+    github_token: str
+    github_webhook_secret: str
 
-    model_config=SettingsConfigDict(
-        env_file=".env",
-        env_file_encoding="utf-8"
-    )
+    class Config:
+        env_file = ".env"
 
 
-settings=Settings()
+settings = Settings()
