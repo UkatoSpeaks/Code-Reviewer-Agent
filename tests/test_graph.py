@@ -1,9 +1,9 @@
 from app.services.review_service import review_pull_request
 
 
-OWNER = "pallets"
-REPO = "flask"
-PULL_NUMBER = 1234
+OWNER = "UkatoSpeaks"
+REPO = "Code-Reviewer-Agent"
+PULL_NUMBER = 1  # Change this to your actual PR number
 
 
 result = review_pull_request(
