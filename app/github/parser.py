@@ -18,4 +18,5 @@ def parse_pull_request(pull_request):
         "description": pull_request.body,
         "author": pull_request.user.login,
         "files": files,
+        "commit_sha": pull_request.head.sha,
     }
